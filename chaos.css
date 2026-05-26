@@ -1,3 +1,10 @@
+/* ==============================================================================
+   GLOBÁLIS RESET & FLUID ALAPOK
+   ============================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   background-image: url("kepek/hatterpuzzles&chaos.png");
   background-repeat: no-repeat;
@@ -5,62 +12,83 @@ body {
   background-position: center;
   background-attachment: fixed; 
   color: #ff9900;
-  font-size: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas: 
-    "h" 
-    "m"
-    "t"; /* 't' mint Tudástár / Tippek területe */
-  justify-items: center; 
-  align-content: center; 
-  gap: 25px; /* Megemeltem, hogy szép távolság legyen a fő blokkok között */
+  /* Fluid betűméret: 14px-ről indul és a kijelző szélességével növekszik max 17px-ig */
+  font-size: clamp(14px, 1.1vw + 10px, 17px);
   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   min-height: 100vh;  
   margin: 0;
-  padding: 20px 0; /* Kis felső-alsó margó, hogy ne lógjon ki a képernyőből */
+  /* Fluid padding: a képernyő szélétől tartott távolság is dinamikusan változik */
+  padding: clamp(10px, 3vw, 30px); 
+  overflow-x: hidden; /* Szigorú hard-limit: vízszintes görgetősáv kizárva! */
+}
+
+/* ==============================================================================
+   HEADER ÉS LOGÓ (Folyékony méretezés)
+   ============================================================================== */
+header {
+  width: 100%;
+  max-width: clamp(240px, 45vw, 480px); /* Szépen skálázódik a képernyő feléig */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header img {
-  height: 500px;
-  grid-area: h;     
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
+/* ==============================================================================
+   MAIN BLOKK (A táblázat tárolója - középre zárt és rugalmas)
+   ============================================================================== */
 main {
   text-align: center;
   background-color: #294696b0;
-  padding: 30px;
+  padding: clamp(15px, 2.5vw, 30px); /* A belső kitöltés is fluid */
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  grid-area: m;          
-  
   width: 100%;          
-  max-width: 600px;
+  max-width: 600px; /* Sosem lesz nagyobb 600px-nél, de kisebb kijelzőn rásimul a szélre */
 }
 
 h1 {
+  margin-top: 0;
   margin-bottom: 5px;
   color: #fc5001;
+  /* Fluid főcím: mobilon 20px, óriás kijelzőn 32px */
+  font-size: clamp(20px, 4vw, 32px);
 }
 
 h2 {
   margin-top: 0;
   font-weight: 400;
   color: #9ca3af;
+  font-size: clamp(14px, 2vw, 18px);
 }
 
+/* ==============================================================================
+   TÁBLÁZAT (Nem nyomhatja ki semmi)
+   ============================================================================== */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 15px;
+  table-layout: fixed; /* Kényszerített oszlopszélesség */
 }
 
 th, td {
-  padding: 12px;
+  padding: clamp(8px, 1.2vw, 12px);
   border: 1px solid #9ba7bb;
   text-align: left;
+  font-size: clamp(13px, 1.2vw + 9px, 16px);
+  word-break: break-word; /* Ha egy név túl hosszú, nem tolja szét a cellát, hanem töri a sort */
 }
 
 th {
@@ -68,36 +96,39 @@ th {
   color: #ff9900;
 }
 
+/* Fix és stabil oszloparányok minden felbontáson */
+th:nth-child(1), td:nth-child(1) { width: 55%; }
+th:nth-child(2), td:nth-child(2) { width: 45%; }
+
 .crown {
   color: #fceb01;
   font-weight: bold;
 }
 
 /* ==============================================================================
-   ÚJ: A 6 DARAB REJTETT TRÜKK RUBRIKA STÍLUSA
+   TUDÁSTÁR GOLYÓÁLLÓ RÁCSRENDSZER (0 db Media Query)
    ============================================================================== */
 .tips-container {
-  grid-area: t;
   display: grid;
-  /* Automatikusan 2 vagy 3 oszlopba rendezi a kártyákat a képernyő szélességétől függően */
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
-  width: 90%;
-  max-width: 1100px; /* Hogy szélesebb lehessen, mint a táblázat, és elférjenek egymás mellett */
+  /* A varázslat: ha a kijelző kisebb mint 320px, 100% széles lesz. Ha nagyobb, automatikusan 
+     pakol be annyi 320px-es oszlopot, amennyi matematikailag kifér, majd a maradék helyet egyenlően elosztja (1fr) */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(15px, 2vw, 25px); /* Fluid távolság a kártyák között */
+  width: 100%;
+  max-width: 1200px;
   margin-top: 10px;
 }
 
 .tip-card {
-  background-color: #294696b0; /* Ugyanaz a szép áttetsző kék, mint a main bázis */
+  background-color: #294696b0;
   border: 1px solid #4770dfab;
   border-radius: 12px;
-  padding: 20px;
+  padding: clamp(15px, 2vw, 22px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-  text-align: left; /* A belső szöveg balra zárt a jobb olvashatóságért */
+  text-align: left;
   transition: transform 0.2s ease;
 }
 
-/* Kis effekt: ha ráviszed az egeret, finoman kiemelkedik */
 .tip-card:hover {
   transform: translateY(-3px);
   border-color: #fc5001;
@@ -105,31 +136,31 @@ th {
 
 .tip-card h3 {
   margin-top: 0;
-  margin-bottom: 12px;
-  color: #fc5001; /* Domináns narancs-vörös a címeknek */
-  font-size: 19px;
+  margin-bottom: 10px;
+  color: #fc5001;
+  font-size: clamp(16px, 2vw, 20px);
   border-bottom: 1px solid #4770dfab;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 .tip-card p {
-  color: #ffffff; /* Fehér leírás a jó olvashatóságért a kék háttéren */
-  font-size: 15px;
-  line-height: 1.5;
-  margin-bottom: 10px;
+  color: #ffffff;
+  font-size: clamp(13px, 1vw + 10px, 15px);
+  line-height: 1.4;
+  margin-bottom: 8px;
 }
 
 .tip-card ul {
   margin: 0;
-  padding-left: 20px;
+  padding-left: 18px;
   color: #d1d5db;
-  font-size: 14px;
+  font-size: clamp(12.5px, 1vw + 9px, 14px);
 }
 
 .tip-card li {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .tip-card strong {
-  color: #fceb01; /* Sárga kiemelés a listákon belül */
+  color: #fceb01;
 }

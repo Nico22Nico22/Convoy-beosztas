@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <img src="kepek/logopuzzles&chaos.png" alt="vlmi nem jo " />
+      <img src="kepek/logopuzzles&chaos.png" alt="Puzzles & Chaos Logo" />
     </header>
 
     <main>
@@ -28,11 +28,11 @@
             <td id="leader-cella">-</td>
           </tr>
           <tr>
-            <td>🧍‍♂️ 2. Hely (Játékos)</td>
+            <td>🚗 2. Hely (Játékos)</td>
             <td id="tag1-cella">-</td>
           </tr>
           <tr>
-            <td>🧍‍♂️ 3. Hely (Játékos)</td>
+            <td>🚗 3. Hely (Játékos)</td>
             <td id="tag2-cella">-</td>
           </tr>
         </tbody>
@@ -107,8 +107,8 @@
       <div class="tip-card">
         <h3>🔮 4. Tábla RNG Újraosztás</h3>
         <p>
-          Ha elakadsz egy nehéz szinten és zsinórban pocsék kezdőtáblákat kapsz,
-          azt a szerverhez rendelt fix RNG Seed okozza:
+          Ha elakadsz egy nehéz szinten és zsinórban pocsék kezdőtáblákat
+          gratuál a gép, azt a szerverhez rendelt fix RNG Seed okozza:
         </p>
         <ul>
           <li>
@@ -148,29 +148,26 @@
         <h3>👑 6. A "Troop Layering" Harci Exploit</h3>
         <p>
           A játék PvP harci motorja nem egyetlen nagy seregként kezeli a
-          katonákat, hanem kaszt és szint (Tier) szerinti "blokkokban" (Stacks)
-          számolja a köröket. Ezt a top játékosok brutálisan kijátsszák:
+          katonákat, hanem kaszt és szint (Tier) szerinti "blokkokban" számolja
+          a köröket:
         </p>
         <ul>
           <li>
             <strong>A tiszta sereg csapdája:</strong> Ha elindítasz egy menetet
             tiszta 200 000 darab T9-es Lovassal, az a motor szemében 1 darab
-            célpont. Az ellenség minden sebzése 100%-os hatékonysággal csapódik
-            beléd.
+            célpont. A sebzés 100%-a beléd csapódik.
           </li>
           <li>
-            <strong>A Rétegezési trükk:</strong> Ha a 200 000 T9-es mellé
-            beteszel <strong>pontosan 10-10 darab</strong> T1, T2, T3, T4, T5,
-            T6, T7 és T8-as katonát minden típusból, a játék kódját
-            kényszeríted, hogy 20+ különálló blokkot hozzon létre.
+            <strong>A Rétegezési trükk:</strong> Ha a fő sereg mellé beteszel
+            <strong>pontosan 10-10 darab</strong> T1, T2, T3... T8-as katonát
+            minden típusból, a kód kénytelen 20+ különálló blokkot létrehozni.
           </li>
           <li>
-            <strong>A Deal-Breaker hatás:</strong> Az ellenséges bálna
-            mega-sebzésű T10-es egységei az automatikus célzás miatt teljes
-            körökön keresztül a te 10 darabos T1-es parasztjaidat fogják
-            támadni. A motor kiszámolja a százezres sebzést a 10 katonára, az
-            <strong>overkill (túlsebzés) miatt a maradék sebzés elvész</strong>,
-            miközben a fő T9-es sereged sértetlenül mészárolja le őket.
+            <strong>A Deal-Breaker hatás:</strong> Az ellenséges bálna T10-es
+            egységei teljes körökön át a te 10 darabos T1-es egységeidet fogják
+            támadni. Az
+            <strong>overkill miatt a gigantikus sebzésük elvész</strong>,
+            miközben a fő sereged sértetlenül darálja le őket.
           </li>
         </ul>
       </div>
@@ -186,7 +183,6 @@
           const nap = String(ma.getDate()).padStart(2, "0");
 
           const maiDatumKulcs = `${ev}-${honap}-${nap}`;
-
           const maiConvoy = menetrend[maiDatumKulcs];
 
           if (maiConvoy) {
