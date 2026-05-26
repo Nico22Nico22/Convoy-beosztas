@@ -1,0 +1,54 @@
+1. A játék hivatalos leírása szerint az azonos típusú effektek felülírják egymást. A közösség azonban rájött, hogy a százalékos és a fix értékes módosítók között van egy rejtett kiskapu a Match-3 csatákban.
+
+A trükk: Ha elnyomsz egy olyan hőst, ami -X% Védelmet (DEF) ad a bossra, majd utána egy olyat, ami Fix -X pont Védelmet ad, a játék kódja nem felülírja őket, hanem egymás után számolja el (multiplatív módon).
+
+Ha a sorrend jó (előbb a %-os, utána a fix), a Boss védelmét szinte 0-ra lehet redukálni néhány másodpercre. Ha ekkor tolod rá a fő sebző hősöd képességét, az kritikus sebzés esetén hatszoros (600%-os) szorzóval fog sebezni a normál érték helyett. Ezt a taktikát használják a top játékosok a bődületes pontszámok eléréséhez a klán-bossok ellen.
+
+
+
+2. Haladó Menü: Az Aréna AI "Célozási Algoritmusa" (Slot Meta)
+Kevesen tudják, de a védő Aréna csapat mesterséges intelligenciája (AI) nem véletlenszerűen támad. A játékosok több ezer meccs alapján rájöttek a pontos algoritmusra:
+
+Az elem-előny (Element Advantage) prioritása: Ha a védő AI hősének feltöltődik a manája, az első lépésben megnézi, van-e a csapatodban olyan színű hős, ami ellen neki elem-előnye van (pl. a zöld hős a te kék hősödet keresi).
+
+A "Slot 1 & 5" Csapda: Ha nincs közvetlen szín-ellenfél, az AI kódja fixen a szélső hősöket (1-es és 5-ös pozíció) veszi célba a legnagyobb eséllyel, míg a középső (3-as) slotot éri a legkevesebb egypontos (single-target) sebzés.
+
+A Taktika: A törékeny, üveggyilkos (Glass Cannon) hősöket mindig a 3-as (középső) helyre tedd! A szélre (1 és 5) pedig rakj olyan tankokat vagy önmagukat élesztő/gyógyító hősöket, akik bírják a folyamatos fókuszt.
+
+
+
+
+3. Haladó Menü: A Színsor-Sokszorozó Képlet (Color Stacking Exploit)
+A legtöbb átlagos játékos elköveti azt a hibát, hogy a Match-3 csatákba (Kampány, Trial, Bossok) minden színből bevisz egy-egy hőst, hogy "kiegyensúlyozott" legyen a csapat. A top játékosok ezzel szemben szín-halmozást (Color Stacking) használnak.
+
+A rejtett mechanika: A csempék sebzési képlete nem lineáris. Ha beviszel például 3 ugyanolyan színű hőst (mondjuk 3 Kéket egy Tűz típusú boss ellen), a kék csempék sebzése nem háromszorozódik, hanem a játék kódja a három hős ATK statját összeadja, és a közös értéket exponenciálisan (négyzetesen) szorozza meg a sebzésnél.
+
+A "Hiányzó Szín" trükk: Ha kihagysz egy színt a csapatból (pl. nincs lila hősöd), a lila csempék fixen csak 1-et fognak sebezni. Ez viszont teljesen elhanyagolható amellett, hogy a stakkelt (halmozott) színed csempéi egyetlen 3-as gyufával (match) képesek lesznek letörölni a Boss életerejének felét, anélkül, hogy a hősök speciális képességeit egyáltalán elnyomnád.
+
+
+
+
+
+4. Haladó Menü: Az RNG Tábla Újraosztása (Board Seed Reshuffling)
+Biztos veled is volt már olyan, hogy elakadtál egy nehéz Match-3 szinten, és egymás után ötször olyan borzalmas kezdőtáblát kaptál, amiből képtelenség volt kombót kirakni. Ez nem a véletlen műve.
+
+A rejtett mechanika: A játék szervere a hős-kombinációdhoz és a szinthez hozzárendel egy fix véletlenszerűségi kódot (RNG Seed). Ha vesztesz, és ugyanazzal a csapattal azonnal újrapróbálod ("Retry"), a szerver hajlamos ugyanazt vagy egy nagyon hasonló tábla-generálást visszaadni.
+
+A Taktika: Ha zsinórban kétszer pocsék a tábla, lépj ki a szintből, cserélj ki egyetlen egy hőst a csapatban (akár egy gyenge, 1-es szintűre is), indítsd el a meccset, majd azonnal nyomj a kilépésre (Retreat). Ez a drasztikus változtatás kényszeríti a játék kódját, hogy teljesen törölje és újragenerálja a tábla RNG seedjét. Amikor ezután visszateszed az eredeti top csapatodat, egy teljesen friss, potenciálisan sokkal szerencsésebb kezdőtáblát kapsz.
+
+
+
+
+
+5. Haladó Menü: Mana Speed Küszöbértékek (Breakpoint Meta)
+A játék a hősök kártyájára csak annyit ír rá, hogy a mana töltési sebességük "Fast" (Gyors), "Average" (Átlagos) vagy "Slow" (Lassú). A háttérben viszont ez kőkemény darabszámokat jelent, amit a "Szellem-csempékkel" (Ghost Tiles) lehet mesterien kontrollálni.
+
+A rejtett mechanika: A belső kód alapján a pontos mana küszöbök (ennyi csempe kell a 100%-hoz):
+
+Fast: 8 darab normál csempe
+
+Average: 10 darab normál csempe
+
+Slow: 12 darab normál csempe
+
+A Taktika: Mivel az üres térbe lőtt csempék (Ghost Tiles) dupla manát adnak, a Fast hősödnek pontosan 4 darab üresen átmenő csempe kell. Ha a csata első körében találsz egy olyan függőleges 4-es match-et, ami nem talál el ellenséget, a Fast hősöd (pl. a fő sebződ vagy a nuke-osod) azonnal, a legelső körben 100% manát kap. A profik nem a tábla közepét tisztítják, hanem kifejezetten a szélső, üres oszlopokat bombázzák a meccs elején, hogy azonnal elsüthessék a hősöket.
