@@ -46,7 +46,7 @@ header img {
 }
 
 /* ==============================================================================
-   MAIN BLOKK (A táblázat tárolója - középre zárt és rugalmas)
+   MAIN BLOKK (A táblázatok fő tárolója)
    ============================================================================== */
 main {
   text-align: center;
@@ -55,7 +55,7 @@ main {
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   width: 100%;          
-  max-width: 600px; /* Sosem lesz nagyobb 600px-nél, de kisebb kijelzőn rásimul a szélre */
+  max-width: 1000px; /* Megnövelve, hogy a két táblázat kényelmesen elférjen egymás mellett */
 }
 
 h1 {
@@ -74,12 +74,25 @@ h2 {
 }
 
 /* ==============================================================================
-   TÁBLÁZAT (Nem nyomhatja ki semmi)
+   KÉT TÁBLÁZAT RUGALMAS ELRENDEZÉSE (Flexbox rendszer)
    ============================================================================== */
-table {
+.tables-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: clamp(15px, 2.5vw, 30px); /* Dinamikus rés a két táblázat között */
   width: 100%;
-  border-collapse: collapse;
   margin-top: 15px;
+  flex-wrap: wrap; /* Biztosítja a mobilnezetes egymás alá ugrást, ha elfogy a hely */
+}
+
+/* ==============================================================================
+   TÁBLÁZATOK (Nem nyomhatja ki semmi)
+   ============================================================================== */
+.convoy-table {
+  flex: 1;
+  min-width: 280px; /* Mobilon ennél nem lesz kisebb, inkább alácsúszik */
+  border-collapse: collapse;
   table-layout: fixed; /* Kényszerített oszlopszélesség */
 }
 
@@ -96,9 +109,17 @@ th {
   color: #ff9900;
 }
 
-/* Fix és stabil oszloparányok minden felbontáson */
-th:nth-child(1), td:nth-child(1) { width: 55%; }
-th:nth-child(2), td:nth-child(2) { width: 45%; }
+/* Külön kiemelt fősor a dátumnak a táblázat tetején */
+.table-main-title {
+  text-align: center;
+  background-color: #1e3370;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Fix és stabil oszloparányok az egyes táblázatokon belül */
+.convoy-table th:nth-child(1), .convoy-table td:nth-child(1) { width: 55%; }
+.convoy-table th:nth-child(2), .convoy-table td:nth-child(2) { width: 45%; }
 
 .crown {
   color: #fceb01;
@@ -111,7 +132,7 @@ th:nth-child(2), td:nth-child(2) { width: 45%; }
 .tips-container {
   display: grid;
   /* A varázslat: ha a kijelző kisebb mint 320px, 100% széles lesz. Ha nagyobb, automatikusan 
-     pakol be annyi 320px-es oszlopot, amennyi matematikailag kifér, majd a maradék helyet egyenlően elosztja (1fr) */
+      pakol be annyi 320px-es oszlopot, amennyi matematikailag kifér, majd a maradék helyet egyenlően elosztja (1fr) */
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: clamp(15px, 2vw, 25px); /* Fluid távolság a kártyák között */
   width: 100%;

@@ -13,31 +13,64 @@
     </header>
 
     <main>
-      <h1>MAI CONVOY BEOSZTÁS</h1>
+      <h1>CONVOY BEOSZTÁSOK</h1>
       <h2 id="mai-datum">Betöltés...</h2>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Pozíció</th>
-            <th>Játékos neve</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="crown">
-            <td>👑 Csúcs hely (Leader)</td>
-            <td id="leader-cella">-</td>
-          </tr>
-          <tr>
-            <td>🚗 2. Hely (Játékos)</td>
-            <td id="tag1-cella">-</td>
-          </tr>
-          <tr>
-            <td>🚗 3. Hely (Játékos)</td>
-            <td id="tag2-cella">-</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="tables-container">
+        
+        <table class="convoy-table">
+          <thead>
+            <tr>
+              <th colspan="2" id="fejlec-tegnap" class="table-main-title">Tegnapi beosztás</th>
+            </tr>
+            <tr>
+              <th>Pozíció</th>
+              <th>Játékos neve</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="crown">
+              <td>👑 Csúcs (Leader)</td>
+              <td id="tegnap-leader-cella">-</td>
+            </tr>
+            <tr>
+              <td>🚗 2. Hely</td>
+              <td id="tegnap-tag1-cella">-</td>
+            </tr>
+            <tr>
+              <td>🚗 3. Hely</td>
+              <td id="tegnap-tag2-cella">-</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="convoy-table">
+          <thead>
+            <tr>
+              <th colspan="2" id="fejlec-ma" class="table-main-title">Mai beosztás</th>
+            </tr>
+            <tr>
+              <th>Pozíció</th>
+              <th>Játékos neve</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="crown">
+              <td>👑 Csúcs (Leader)</td>
+              <td id="leader-cella">-</td>
+            </tr>
+            <tr>
+              <td>🚗 2. Hely</td>
+              <td id="tag1-cella">-</td>
+            </tr>
+            <tr>
+              <td>🚗 3. Hely</td>
+              <td id="tag2-cella">-</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
     </main>
 
     <section class="tips-container">
@@ -126,7 +159,7 @@
       </div>
 
       <div class="tip-card">
-        <h3>🌀 5. Mana Breakpoint Meta</h3>
+        <h3>⚡ 5. Mana Breakpoint Meta</h3>
         <p>
           A hősök kártyáján lévő Fast/Average/Slow jelzések mögött kőkemény
           csempe-darabszámok állnak, amiket kötelező kiszámolni:
@@ -179,37 +212,53 @@
         .then((response) => response.json())
         .then((menetrend) => {
           const ma = new Date();
-          const ev = ma.getFullYear();
-          const honap = String(ma.getMonth() + 1).padStart(2, "0");
-          const nap = String(ma.getDate()).padStart(2, "0");
+          const evMa = ma.getFullYear();
+          const honapMa = String(ma.getMonth() + 1).padStart(2, "0");
+          const napMa = String(ma.getDate()).padStart(2, "0");
+          const maiDatumKulcs = `${evMa}-${honapMa}-${napMa}`;
 
-          const maiDatumKulcs = `${ev}-${honap}-${nap}`;
+          const tegnap = new Date();
+          tegnap.setDate(ma.getDate() - 1);
+          const evTegnap = tegnap.getFullYear();
+          const honapTegnap = String(tegnap.getMonth() + 1).padStart(2, "0");
+          const napTegnap = String(tegnap.getDate()).padStart(2, "0");
+          const tegnapiDatumKulcs = `${evTegnap}-${honapTegnap}-${napTegnap}`;
+
           const maiConvoy = menetrend[maiDatumKulcs];
+          const tegnapiConvoy = menetrend[tegnapiDatumKulcs];
 
           if (maiConvoy) {
-            document.getElementById("mai-datum").innerText =
-              `${maiDatumKulcs} (${maiConvoy.nap})`;
-
-            document.getElementById("leader-cella").innerText =
-              maiConvoy.csucs_hely_leader;
-            document.getElementById("tag1-cella").innerText =
-              maiConvoy.hely_2_tag;
-            document.getElementById("tag2-cella").innerText =
-              maiConvoy.hely_3_tag;
-
-            console.log("Mai nap sikeresen betöltve!");
+            document.getElementById("mai-datum").innerText = `Mai nap: ${maiDatumKulcs} (${maiConvoy.nap})`;
           } else {
-            document.getElementById("mai-datum").innerText =
-              "Nincs mára tervezett convoy.";
-            console.log(
-              "Erre a napra nincs generált convoy, le kell futtatni újra a Pythont!",
-            );
+            document.getElementById("mai-datum").innerText = `Mai nap: ${maiDatumKulcs}`;
+          }
+
+          document.getElementById("fejlec-tegnap").innerText = `Tegnap (${tegnapiDatumKulcs})`;
+          document.getElementById("fejlec-ma").innerText = `Ma (${maiDatumKulcs})`;
+
+          if (tegnapiConvoy) {
+            document.getElementById("tegnap-leader-cella").innerText = tegnapiConvoy.csucs_hely_leader;
+            document.getElementById("tegnap-tag1-cella").innerText = tegnapiConvoy.hely_2_tag;
+            document.getElementById("tegnap-tag2-cella").innerText = tegnapiConvoy.hely_3_tag;
+          } else {
+            document.getElementById("tegnap-leader-cella").innerText = "Nincs adat";
+            document.getElementById("tegnap-tag1-cella").innerText = "Nincs adat";
+            document.getElementById("tegnap-tag2-cella").innerText = "Nincs adat";
+          }
+
+          if (maiConvoy) {
+            document.getElementById("leader-cella").innerText = maiConvoy.csucs_hely_leader;
+            document.getElementById("tag1-cella").innerText = maiConvoy.hely_2_tag;
+            document.getElementById("tag2-cella").innerText = maiConvoy.hely_3_tag;
+          } else {
+            document.getElementById("leader-cella").innerText = "Nincs convoy";
+            document.getElementById("tag1-cella").innerText = "Nincs convoy";
+            document.getElementById("tag2-cella").innerText = "Nincs convoy";
           }
         })
         .catch((error) => {
           console.error("Hiba történt a JSON beolvasásakor:", error);
-          document.getElementById("mai-datum").innerText =
-            "Hiba az adatok betöltésekor!";
+          document.getElementById("mai-datum").innerText = "Hiba az adatok betöltésekor!";
         });
     </script>
   </body>
