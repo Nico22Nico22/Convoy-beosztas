@@ -12,15 +12,16 @@ LEADERS = [
     "|Joseph|",
     "Renegades87",
     "Graci"
+    #"Natsu93"
 ]
 
 TAGOK = [
-     "kuntulmax", "MBV","Malpaso", "LunaMoonShadow", "akssh", "Emmanuel80", "KellysS", 
-    "BATCAT", "leo~paw", "Kingeorgemlm", "Dart666", "hax2025", 
-    "Ockye", "⚙♦⚙", "Psychfish", "plantolume", "Bluebaron121", 
-    "B0obiWick", "SmellyDerek", "ReiJ", 
-    "kadodaanny", "Lord3YKVuCf-T2", "Lord3YMZz91-XC", "itsLeah", "Lord3Yz49HR-dg", 
-    "Pages1195", "Roymod76"
+    "Lord3Yz49HR-dg","akssh", "Bluebaron121", "BATCAT", "KellysS", "Dart666", 
+    "hax2025", "Malpaso", "Ockye", "Emmanuel80", "ReiJ", 
+    "⚙♦⚙", "itsLeah", "SmellyDerek", "kuntulmax", "sTrangers", 
+    "leo~paw", "plantolume", "Psychfish", "LunaMoonShadow", "Okbro", 
+    "Jamput", "Воин42", "Kingeorgemlm", "MBV", "Lord3YMZz91-XC", 
+    "CosmicStar", "Roymod76", "kadodaanny", "Lord3YD0tF1-6E", "The•Wlady•Rd"
 ]
 
 # ==============================================================================
