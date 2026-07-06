@@ -6,22 +6,42 @@ from datetime import datetime, timedelta
 # 1. A PONTOS CSAPATTAGOK BEÁLLÍTÁSA
 # ==============================================================================
 LEADERS = [
-    "Lost ~ Phantom♡",
-    "22Nico22",
     "girlinshadow",
     "|Joseph|",
     "Renegades87",
-    "Graci"
-    #"Natsu93"
+    "Lost ~ Phantom♡",
+    "22Nico22"
 ]
 
 TAGOK = [
-    "Lord3Yz49HR-dg","akssh", "Bluebaron121", "BATCAT", "KellysS", "Dart666", 
-    "hax2025", "Malpaso", "Ockye", "Emmanuel80", "ReiJ", 
-    "⚙♦⚙", "itsLeah", "SmellyDerek", "kuntulmax", "sTrangers", 
-    "leo~paw", "plantolume", "Psychfish", "LunaMoonShadow", "Okbro", 
-    "Jamput", "Воин42", "Kingeorgemlm", "MBV", "Lord3YMZz91-XC", 
-    "CosmicStar", "Roymod76", "kadodaanny", "Lord3YD0tF1-6E", "The•Wlady•Rd"
+    "Emmanuel80",
+    "ReiJ",
+    "⚙♦⚙", 
+    "itsLeah", 
+    "SmellyDerek", 
+    "kuntulmax", 
+    "sTrangers", 
+    "leo~paw", 
+    "plantolume", 
+    "Psychfish", 
+    "LunaMoonShadow", 
+    "Jamput", 
+    "Kingeorgemlm", 
+    "Lord3YMZz91-XC", 
+    "CosmicStar", 
+    "Roymod76", 
+    "kadodaanny", 
+    "Lord3YD0tF1-6E", 
+    "Malpaso",
+    "ShadowHeel",
+    "Ultraman21",
+    "Bluebaron121",
+    "BATCAT",
+    "hax2025",
+    "Ockye",
+    "Lord3YbP0vV-TN",
+    "HunterHeroGlauco",
+    "akssh"
 ]
 
 # ==============================================================================
