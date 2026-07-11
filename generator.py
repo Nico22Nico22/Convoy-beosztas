@@ -14,8 +14,6 @@ LEADERS = [
 ]
 
 TAGOK = [
-    "leo~paw",
-    "plantolume",
     "Psychfish",
     "LunaMoonShadow",
     "Jamput",
