@@ -6,20 +6,14 @@ from datetime import datetime, timedelta
 # 1. A PONTOS CSAPATTAGOK BEÁLLÍTÁSA
 # ==============================================================================
 LEADERS = [
+    "|Joseph|",
+    "Renegades87",
     "22Nico22",
     "girlinshadow",
-    "|Joseph|"
-    "Renegades87"
     "Lost ~ Phantom♡"
 ]
 
 TAGOK = [
-    "Psychfish",
-    "LunaMoonShadow",
-    "Jamput",
-    "Kingeorgemlm",
-    "Lord3YMZz91-XC",
-    "CosmicStar",
     "Roymod76",
     "kadodaanny",
     "Lord3YD0tF1-6E",
@@ -40,7 +34,13 @@ TAGOK = [
     "SmellyDerek",
     "kuntulmax",
     "BATCAT",
-    "sTrangers"
+    "sTrangers",
+    "Psychfish",
+    "LunaMoonShadow",
+    "Jamput",
+    "Kingeorgemlm",
+    "Lord3YMZz91-XC",
+    "CosmicStar"
 ]
 
 # ==============================================================================
