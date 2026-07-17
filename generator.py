@@ -15,7 +15,7 @@ LEADERS = [
 
 TAGOK = [
     "ShadowHeel",
-    "Ultraman21",
+    "sTrangers",
     "Bluebaron121",
     "hax2025",
     "Ockye",
@@ -30,7 +30,6 @@ TAGOK = [
     "SmellyDerek",
     "kuntulmax",
     "BATCAT",
-    "sTrangers",
     "Psychfish",
     "LunaMoonShadow",
     "Jamput",
