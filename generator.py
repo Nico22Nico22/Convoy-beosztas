@@ -8,7 +8,6 @@ from datetime import datetime, timedelta
 LEADERS = [
     "22Nico22",
     "girlinshadow",
-    "Lost ~ Phantom♡",
     "|Joseph|",
     "Renegades87"
 ]
@@ -19,26 +18,17 @@ TAGOK = [
     "Bluebaron121",
     "hax2025",
     "Ockye",
-    "Lord3YbP0vV-TN",
     "HunterHeroGlauco",
     "akssh",
-    "kagome",
     "Emmanuel80",
     "ReiJ",
-    "⚙♦⚙",
     "itsLeah",
     "SmellyDerek",
     "kuntulmax",
     "BATCAT",
     "Psychfish",
     "LunaMoonShadow",
-    "Jamput",
     "Kingeorgemlm",
-    "Lord3YMZz91-XC",
-    "CosmicStar",
-    "Roymod76",
-    "kadodaanny",
-    "Lord3YD0tF1-6E",
     "Malpaso"
 ]
 
