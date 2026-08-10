@@ -16,6 +16,7 @@ TAGOK = [
     "ShadowHeel",
     "sTrangers",
     "akssh",
+    "kellys",
     "Emmanuel80",
     "ReiJ",
     "itsLeah",
@@ -25,7 +26,9 @@ TAGOK = [
     "Psychfish",
     "LunaMoonShadow",
     "Kingeorgemlm",
-    "Malpaso"
+    "Malpaso",
+    "jamput",
+    "dart"
 ]
 
 # ==============================================================================
