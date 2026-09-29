@@ -13,7 +13,6 @@ LEADERS = [
 ]
 
 TAGOK = [
-    "kellys",
     "Emmanuel80",
     "ReiJ",
     "Shadowfrost",
