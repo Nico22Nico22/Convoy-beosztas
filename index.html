@@ -17,7 +17,7 @@
       <h2 id="mai-datum">Betöltés...</h2>
 
       <div class="tables-container">
-        
+
         <table class="convoy-table">
           <thead>
             <tr>
@@ -66,6 +66,32 @@
             <tr>
               <td>🚗 3. Hely</td>
               <td id="tag2-cella">-</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="convoy-table">
+          <thead>
+            <tr>
+              <th colspan="2" id="fejlec-holnap" class="table-main-title">Holnapi beosztás</th>
+            </tr>
+            <tr>
+              <th>Pozíció</th>
+              <th>Játékos neve</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="crown">
+              <td>👑 Csúcs (Leader)</td>
+              <td id="holnap-leader-cella">-</td>
+            </tr>
+            <tr>
+              <td>🚗 2. Hely</td>
+              <td id="holnap-tag1-cella">-</td>
+            </tr>
+            <tr>
+              <td>🚗 3. Hely</td>
+              <td id="holnap-tag2-cella">-</td>
             </tr>
           </tbody>
         </table>
@@ -208,53 +234,45 @@
     </section>
 
     <script>
+      // Dátum -> "ÉÉÉÉ-HH-NN" kulcs, eltolással (napokban) a mai naphoz képest
+      function datumKulcs(eltolas) {
+        const d = new Date();
+        d.setDate(d.getDate() + eltolas);
+        const ev = d.getFullYear();
+        const honap = String(d.getMonth() + 1).padStart(2, "0");
+        const nap = String(d.getDate()).padStart(2, "0");
+        return `${ev}-${honap}-${nap}`;
+      }
+
+      // Egy táblázat kitöltése; elotag: "tegnap-", "" (ma) vagy "holnap-"
+      function tablaKitoltes(elotag, convoy, uresSzoveg) {
+        document.getElementById(`${elotag}leader-cella`).innerText = convoy ? convoy.csucs_hely_leader : uresSzoveg;
+        document.getElementById(`${elotag}tag1-cella`).innerText = convoy ? convoy.hely_2_tag : uresSzoveg;
+        document.getElementById(`${elotag}tag2-cella`).innerText = convoy ? convoy.hely_3_tag : uresSzoveg;
+      }
+
       fetch("menetrend.json")
         .then((response) => response.json())
         .then((menetrend) => {
-          const ma = new Date();
-          const evMa = ma.getFullYear();
-          const honapMa = String(ma.getMonth() + 1).padStart(2, "0");
-          const napMa = String(ma.getDate()).padStart(2, "0");
-          const maiDatumKulcs = `${evMa}-${honapMa}-${napMa}`;
+          const tegnapiDatumKulcs = datumKulcs(-1);
+          const maiDatumKulcs = datumKulcs(0);
+          const holnapiDatumKulcs = datumKulcs(1);
 
-          const tegnap = new Date();
-          tegnap.setDate(ma.getDate() - 1);
-          const evTegnap = tegnap.getFullYear();
-          const honapTegnap = String(tegnap.getMonth() + 1).padStart(2, "0");
-          const napTegnap = String(tegnap.getDate()).padStart(2, "0");
-          const tegnapiDatumKulcs = `${evTegnap}-${honapTegnap}-${napTegnap}`;
-
-          const maiConvoy = menetrend[maiDatumKulcs];
           const tegnapiConvoy = menetrend[tegnapiDatumKulcs];
+          const maiConvoy = menetrend[maiDatumKulcs];
+          const holnapiConvoy = menetrend[holnapiDatumKulcs];
 
-          if (maiConvoy) {
-            document.getElementById("mai-datum").innerText = `Mai nap: ${maiDatumKulcs} (${maiConvoy.nap})`;
-          } else {
-            document.getElementById("mai-datum").innerText = `Mai nap: ${maiDatumKulcs}`;
-          }
+          document.getElementById("mai-datum").innerText = maiConvoy
+            ? `Mai nap: ${maiDatumKulcs} (${maiConvoy.nap})`
+            : `Mai nap: ${maiDatumKulcs}`;
 
           document.getElementById("fejlec-tegnap").innerText = `Tegnap (${tegnapiDatumKulcs})`;
           document.getElementById("fejlec-ma").innerText = `Ma (${maiDatumKulcs})`;
+          document.getElementById("fejlec-holnap").innerText = `Holnap (${holnapiDatumKulcs})`;
 
-          if (tegnapiConvoy) {
-            document.getElementById("tegnap-leader-cella").innerText = tegnapiConvoy.csucs_hely_leader;
-            document.getElementById("tegnap-tag1-cella").innerText = tegnapiConvoy.hely_2_tag;
-            document.getElementById("tegnap-tag2-cella").innerText = tegnapiConvoy.hely_3_tag;
-          } else {
-            document.getElementById("tegnap-leader-cella").innerText = "Nincs adat";
-            document.getElementById("tegnap-tag1-cella").innerText = "Nincs adat";
-            document.getElementById("tegnap-tag2-cella").innerText = "Nincs adat";
-          }
-
-          if (maiConvoy) {
-            document.getElementById("leader-cella").innerText = maiConvoy.csucs_hely_leader;
-            document.getElementById("tag1-cella").innerText = maiConvoy.hely_2_tag;
-            document.getElementById("tag2-cella").innerText = maiConvoy.hely_3_tag;
-          } else {
-            document.getElementById("leader-cella").innerText = "Nincs convoy";
-            document.getElementById("tag1-cella").innerText = "Nincs convoy";
-            document.getElementById("tag2-cella").innerText = "Nincs convoy";
-          }
+          tablaKitoltes("tegnap-", tegnapiConvoy, "Nincs adat");
+          tablaKitoltes("", maiConvoy, "Nincs convoy");
+          tablaKitoltes("holnap-", holnapiConvoy, "Még nincs beosztva");
         })
         .catch((error) => {
           console.error("Hiba történt a JSON beolvasásakor:", error);
