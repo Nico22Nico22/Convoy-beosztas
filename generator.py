@@ -29,7 +29,9 @@ TAGOK = [
     "Shadowfrost",
     "SmellyDerek",
     "kuntulmax",
-    "BATCAT"
+    "BATCAT",
+    "lordxc",
+    "bluebaron"
 ]
 
 # ==============================================================================
